@@ -19,6 +19,10 @@ variable "environment" {
 
 }
 
+############################
+# Networking
+############################
+
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
@@ -51,5 +55,19 @@ variable "private_subnet_2_cidr" {
   description = "CIDR block for Private Subnet 2"
   type        = string
   default     = "10.0.12.0/24"
+
+}
+
+variable "availability_zone_1" {
+  description = "Primary AZ"
+  type        = string
+  default     = "ap-south-1a"
+
+}
+
+variable "availability_zone_2" {
+  description = "Secondary AZ"
+  type        = string
+  default     = "ap-south-1b"
 
 }
