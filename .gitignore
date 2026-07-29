@@ -16,3 +16,6 @@ crash.log
 # OS
 .DS_Store
 Thumbs.db
+
+#PEM keys
+.pem
