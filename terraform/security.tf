@@ -70,16 +70,6 @@ resource "aws_security_group" "app_sg" {
     ]
   }
 
-  ingress {
-
-    description = "SSH added temporary"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["106.213.82.207/32"]
-
-  }
-
   egress {
 
     description = "Allow all outbound traffic"

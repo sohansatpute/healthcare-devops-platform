@@ -19,3 +19,36 @@ output "ec2_public_dns" {
   value       = aws_instance.app_server.public_dns
 
 }
+
+###################################
+# ALB Public DNS
+###################################
+
+output "alb_dns_name" {
+
+  description = "Application Load Balancer DNS Name"
+  value       = aws_lb.app_alb.dns_name
+
+}
+
+###################################
+# ALB ARN
+###################################
+
+output "alb_arn" {
+
+  description = "ALB ARN"
+  value       = aws_lb.app_alb.arn
+
+}
+
+###################################
+# ALB Target Group ARN
+###################################
+
+output "target_group_arn" {
+
+  description = "Application Target Group ARN"
+  value       = aws_lb_target_group.app_tg.arn
+
+}

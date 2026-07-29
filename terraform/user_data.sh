@@ -10,3 +10,11 @@ usermod -aG docker ec2-user
 dnf install -y amazon-ssm-agent
 systemctl enable amazon-ssm-agent
 systemctl start amazon-ssm-agent
+
+# Pull and run Nginx
+docker pull nginx
+docker run -d \
+  --restart unless-stopped \
+  --name nginx \
+  -p 80:80 \
+  nginx
