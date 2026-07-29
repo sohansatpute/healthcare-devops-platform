@@ -71,3 +71,34 @@ variable "availability_zone_2" {
   default     = "ap-south-1b"
 
 }
+
+###################################
+# EC2 AMI
+###################################
+
+variable "ami_name_filter" {
+
+  description = "Amazon Linux 2023 AMI name filter"
+  type        = string
+  default     = "al2023-ami-*-x86_64"
+
+}
+
+###################################
+# EC2 Configuration
+###################################
+
+variable "instance_type" {
+
+  description = "EC2 Instance Type"
+  type        = string
+  default     = "t3.micro"
+
+}
+
+variable "key_pair_name" {
+
+  description = "AWS EC2 Key Pair Name"
+  type        = string
+
+}
