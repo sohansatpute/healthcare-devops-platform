@@ -1,5 +1,5 @@
 ############################
-#ALB Target Group
+# ALB Target Group
 ############################
 
 
@@ -65,20 +65,52 @@ resource "aws_lb_listener" "http_listener" {
   protocol          = "HTTP"
 
   default_action {
-    type             = "forward"
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+
+  }
+
+}
+
+
+resource "aws_lb_listener" "https_listener" {
+
+  load_balancer_arn = aws_lb.app_alb.arn
+
+  port     = 443
+  protocol = "HTTPS"
+
+  ssl_policy = "ELBSecurityPolicy-2016-08"
+
+  certificate_arn = var.acm_certificate_arn
+
+  default_action {
+
+    type = "forward"
+
     target_group_arn = aws_lb_target_group.app_tg.arn
   }
 
 }
 
+
+
+
+
+
 ############################
 #Target Group Attachment
 ############################
 
-resource "aws_lb_target_group_attachment" "app_server" {
+# resource "aws_lb_target_group_attachment" "app_server" {
 
-  target_group_arn = aws_lb_target_group.app_tg.arn
-  target_id        = aws_instance.app_server.id
-  port             = 80
+#   target_group_arn = aws_lb_target_group.app_tg.arn
+#   target_id        = aws_instance.app_server.id
+#   port             = 80
 
-}
+# }

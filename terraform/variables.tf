@@ -102,3 +102,14 @@ variable "key_pair_name" {
   type        = string
 
 }
+
+###################################
+# ACM Certificate
+###################################
+
+variable "acm_certificate_arn" {
+
+  description = "ARN of the ACM certificate"
+  type        = string
+
+}
