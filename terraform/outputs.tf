@@ -52,3 +52,21 @@ output "target_group_arn" {
   value       = aws_lb_target_group.app_tg.arn
 
 }
+
+#####################################
+# Elastic Container Registry
+#####################################
+
+output "aws_ecr_repository_url" {
+
+  description = "Amazon ECR Repository URL"
+  value       = aws_ecr_repository.healthcare_app.repository_url
+
+}
+
+output "ecr_repository_name" {
+
+  description = "Amazon ECR Repository Name"
+  value       = aws_ecr_repository.healthcare_app.name
+
+}
