@@ -18,4 +18,6 @@ crash.log
 Thumbs.db
 
 #PEM keys
-.pem
+*.pem
+*.txt
+AWS Access key.txt
