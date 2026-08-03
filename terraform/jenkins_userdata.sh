@@ -32,7 +32,6 @@ dnf install -y \
 java-21-amazon-corretto \
 git \
 docker \
-curl
 
 ###########################################
 # Verify Installations
@@ -42,6 +41,7 @@ java -version
 git --version
 docker --version
 aws --version
+curl --version
 
 ###########################################
 # Add Jenkins Repository
