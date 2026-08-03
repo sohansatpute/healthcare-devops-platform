@@ -88,7 +88,7 @@ variable "ami_name_filter" {
 # EC2 Configuration
 ###################################
 
-variable "instance_type" {
+variable "application_instance_type" {
 
   description = "EC2 Instance Type"
   type        = string
@@ -111,5 +111,24 @@ variable "acm_certificate_arn" {
 
   description = "ARN of the ACM certificate"
   type        = string
+
+}
+
+###########################################
+# Jenkins Instance
+###########################################
+
+variable "jenkins_instance_type" {
+
+  description = "Instance type for Jenkins"
+  type        = string
+
+}
+
+variable "jenkins_root_volume_size" {
+
+  description = "Root volume size for Jenkins"
+  type        = number
+  default     = 30
 
 }

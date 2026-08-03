@@ -70,3 +70,17 @@ output "ecr_repository_name" {
   value       = aws_ecr_repository.healthcare_app.name
 
 }
+
+output "Jenkins_public_IP" {
+
+  description = "Public IP of Jenkins server"
+  value       = aws_instance.jenkins_server.public_ip
+
+}
+
+output "jenkins_url" {
+
+  description = "Jenkins Web url"
+  value       = "http://${aws_instance.jenkins_server.public_ip}:8080"
+
+}
