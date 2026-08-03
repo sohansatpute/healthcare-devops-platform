@@ -7,24 +7,21 @@ pipeline {
         stage('Checkout') {
 
             steps {
-
                 checkout scm
             }
         }
 
-        stage('Verify workspace') {
+        stage('Verify Workspace') {
 
             steps {
-
                 sh 'pwd'
                 sh 'ls -la'
             }
         }
 
-        stage('Verify tools') {
+        stage('Verify Tools') {
 
             steps {
-
                 sh 'java --version'
                 sh 'git --version'
                 sh 'docker --version'
@@ -45,27 +42,24 @@ pipeline {
                     '''
                 }
             }
+        }
+
         stage('List Docker Images') {
 
             steps {
-
                 sh 'docker images'
             }
         }
-        
-        
     }
 
     post {
 
         success {
-
             echo "Docker image built successfully."
         }
 
         failure {
-
-            echo "Pipeline failed"
+            echo "Pipeline failed."
         }
     }
 }
