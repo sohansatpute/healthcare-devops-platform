@@ -15,7 +15,7 @@ resource "aws_security_group" "jenkins_sg" {
     to_port     = 22
     protocol    = "tcp"
 
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.my_public_ip]
   }
 
   ingress {

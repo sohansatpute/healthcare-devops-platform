@@ -20,7 +20,7 @@ echo "=========================================="
 
 echo "Updating system packages..."
 
-dnf update -y
+retry dnf update -y
 
 ###########################################
 # Install Required Packages
@@ -28,7 +28,7 @@ dnf update -y
 
 echo "Installing Java, Git, Docker and Curl..."
 
-dnf install -y \
+retry dnf install -y \
 java-21-amazon-corretto \
 git \
 docker \
@@ -49,7 +49,7 @@ curl --version
 
 echo "Adding Jenkins Repository..."
 
-curl -fsSL -L \
+retry curl -fsSL -L \
 https://pkg.jenkins.io/redhat-stable/jenkins.repo \
 -o /etc/yum.repos.d/jenkins.repo
 
@@ -64,7 +64,7 @@ rpm --import https://pkg.jenkins.io/rpm-stable/repodata/repomd.xml.key
 ###########################################
 
 dnf clean all
-dnf makecache -y
+retry dnf makecache -y
 
 ###########################################
 # Install Jenkins
@@ -72,14 +72,14 @@ dnf makecache -y
 
 echo "Installing Jenkins..."
 
-dnf install -y jenkins
+retry dnf install -y jenkins
 
 ###########################################
 # Enable Docker
 ###########################################
 
 systemctl enable docker
-systemctl start docker
+retry systemctl start docker
 
 ###########################################
 # Add Jenkins User to Docker Group
@@ -94,7 +94,7 @@ usermod -aG docker jenkins
 systemctl daemon-reload
 
 systemctl enable jenkins
-systemctl start jenkins
+retry systemctl start jenkins
 
 ###########################################
 # Verify Jenkins
