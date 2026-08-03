@@ -31,13 +31,36 @@ pipeline {
                 sh 'aws --version'
             }
         }
+
+        stage('Build Docker Image') {
+
+            steps {
+
+                dir('application') {
+
+                    sh '''
+                    docker build \
+                    -t healthcare-app:${BUILD_NUMBER} \
+                    -t healthcare-app:latest .
+                    '''
+                }
+            }
+        stage('List Docker Images') {
+
+            steps {
+
+                sh 'docker images'
+            }
+        }
+        
+        
     }
 
     post {
 
         success {
 
-            echo "Pipeline completed successfully"
+            echo "Docker image built successfully."
         }
 
         failure {

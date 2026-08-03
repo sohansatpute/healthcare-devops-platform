@@ -136,6 +136,6 @@ variable "jenkins_root_volume_size" {
 variable "my_public_ip" {
 
   description = "Public IP allowed for SSH"
-  type = string
-  
+  type        = string
+
 }
