@@ -83,6 +83,8 @@ pipeline {
 
                 docker push 963910217596.dkr.ecr.ap-south-1.amazonaws.com/healthcare-app:latest
 
+                '''
+
             }
         }
 
@@ -93,7 +95,7 @@ pipeline {
                 sh '''
 
                 ssh -o StrictHostKeyChecking=no ec2-user@10.0.1.98 'bash -s' < scripts/deploy.sh
-                
+
                 '''
             }
         }
