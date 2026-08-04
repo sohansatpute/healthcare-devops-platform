@@ -5,14 +5,12 @@ pipeline {
     stages {
 
         stage('Checkout') {
-
             steps {
                 checkout scm
             }
         }
 
         stage('Verify Workspace') {
-
             steps {
                 sh 'pwd'
                 sh 'ls -la'
@@ -20,7 +18,6 @@ pipeline {
         }
 
         stage('Verify Tools') {
-
             steps {
                 sh 'java --version'
                 sh 'git --version'
@@ -30,11 +27,8 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-
             steps {
-
                 dir('application') {
-
                     sh '''
                     docker build \
                     -t healthcare-app:${BUILD_NUMBER} \
@@ -45,37 +39,28 @@ pipeline {
         }
 
         stage('List Docker Images') {
-
             steps {
                 sh 'docker images'
             }
         }
 
         stage('Deploy application to EC2') {
-
             steps {
-
-                sh """
-
+                sh '''
                 ssh -o StrictHostKeyChecking=no ec2-user@10.0.1.98 'bash -s' < scripts/deploy.sh
-
-                """
+                '''
             }
+        }
     }
 
     post {
 
         success {
-
             echo "Docker image built successfully."
         }
 
         failure {
-
             echo "Pipeline failed."
-        }
-
-        
         }
     }
 }
