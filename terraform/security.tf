@@ -70,6 +70,16 @@ resource "aws_security_group" "app_sg" {
     ]
   }
 
+  ingress {
+
+    description = "SSH from Jenkins server"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+
+    security_groups = [aws_security_group.jenkins_sg.id]
+  }
+
   egress {
 
     description = "Allow all outbound traffic"
