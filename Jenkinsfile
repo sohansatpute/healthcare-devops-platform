@@ -55,10 +55,12 @@ pipeline {
     post {
 
         success {
+
             echo "Docker image built successfully."
         }
 
         failure {
+            
             echo "Pipeline failed."
         }
     }

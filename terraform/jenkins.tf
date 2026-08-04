@@ -54,6 +54,7 @@ resource "aws_security_group" "jenkins_sg" {
   }
 
   tags = {
+
     "Name" = "Jenkins Security Group"
   }
 
@@ -65,7 +66,8 @@ resource "aws_security_group" "jenkins_sg" {
 
 resource "aws_instance" "jenkins_server" {
 
-  ami           = data.aws_ami.amazon_linux.id
+  ami = data.aws_ami.amazon_linux.id
+
   instance_type = var.jenkins_instance_type
 
   subnet_id = aws_subnet.public_subnet_1.id
@@ -80,6 +82,8 @@ resource "aws_instance" "jenkins_server" {
 
   associate_public_ip_address = true
 
+  user_data_replace_on_change = true
+
   root_block_device {
 
     volume_size = var.jenkins_root_volume_size
@@ -88,6 +92,7 @@ resource "aws_instance" "jenkins_server" {
   }
 
   tags = {
+
     "Name" = "Healthcare Jenkins Server"
   }
 
