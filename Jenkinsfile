@@ -60,8 +60,20 @@ pipeline {
         }
 
         failure {
-            
+
             echo "Pipeline failed."
+        }
+
+        stage('Deploy application to EC2') {
+
+            steps {
+
+                sh """
+
+                ssh -o StrictHostKeyChecking=no ec2-user@<10.0.1.98> 'bash -s' < scripts/deploy.sh
+
+                """
+            }
         }
     }
 }
