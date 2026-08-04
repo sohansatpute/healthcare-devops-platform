@@ -78,7 +78,7 @@ resource "aws_instance" "jenkins_server" {
 
   user_data = file("${path.module}/jenkins_userdata.sh")
 
-  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+  iam_instance_profile = aws_iam_instance_profile.jenkins_profile.name
 
   associate_public_ip_address = true
 

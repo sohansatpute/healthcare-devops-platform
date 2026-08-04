@@ -88,17 +88,33 @@ pipeline {
             }
         }
 
+        
         stage('Deploy application to EC2') {
 
-            steps {
+    steps {
 
-                sh '''
+        script {
 
-                ssh -o StrictHostKeyChecking=no ec2-user@10.0.1.98 'bash -s' < scripts/deploy.sh
+            def APP_PRIVATE_IP = sh(
+                script: '''
+                aws ec2 describe-instances \
+                  --filters \
+                    "Name=tag:Name,Values=Healthcare-ASG-Instance" \
+                    "Name=instance-state-name,Values=running" \
+                  --query "Reservations[].Instances[].PrivateIpAddress" \
+                  --output text
+                ''',
+                returnStdout: true
+            ).trim()
 
-                '''
-            }
+            echo "Application Private IP: ${APP_PRIVATE_IP}"
+
+            sh """
+            ssh -o StrictHostKeyChecking=no ec2-user@${APP_PRIVATE_IP} 'bash -s' < scripts/deploy.sh
+            """
         }
+    }
+}
     }
 
     post {
