@@ -82,6 +82,22 @@ systemctl enable docker
  
 systemctl start docker
 
+
+###########################################
+# Install SSM Agent
+###########################################
+
+echo "Installing Amazon SSM Agent..."
+
+dnf install -y amazon-ssm-agent
+
+systemctl enable amazon-ssm-agent
+
+systemctl start amazon-ssm-agent
+
+systemctl status amazon-ssm-agent --no-pager
+
+
 ###########################################
 # Add Jenkins User to Docker Group
 ###########################################
