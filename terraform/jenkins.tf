@@ -82,7 +82,13 @@ resource "aws_instance" "jenkins_server" {
 
   associate_public_ip_address = true
 
-  user_data_replace_on_change = true
+  #user_data_replace_on_change = true
+
+  lifecycle {
+    ignore_changes = [
+      user_data
+    ]
+  }
 
   root_block_device {
 

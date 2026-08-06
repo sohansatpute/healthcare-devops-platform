@@ -64,7 +64,7 @@ rpm --import https://pkg.jenkins.io/rpm-stable/repodata/repomd.xml.key
 ###########################################
 
 dnf clean all
- dnf makecache -y
+dnf makecache -y
 
 ###########################################
 # Install Jenkins
@@ -124,3 +124,4 @@ echo "=========================================="
 echo "Jenkins Installation Completed"
 echo "Time: $(date)"
 echo "=========================================="
+
