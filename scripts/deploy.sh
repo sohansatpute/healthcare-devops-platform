@@ -21,6 +21,11 @@ echo "Stopping containers using port 80..."
 docker ps -q --filter "publish=80" | xargs -r docker stop
 docker ps -aq --filter "publish=80" | xargs -r docker rm
 
+echo "Cleaning unused Docker images..."
+
+docker image prune -f
+
+
 echo "Starting new container..."
 
 docker run -d \
@@ -29,6 +34,5 @@ docker run -d \
   -p 80:80 \
   ${ECR_REPOSITORY}:latest
 
-docker image prune -f
 
 echo "Deployment completed successfully."
