@@ -21,6 +21,10 @@ echo "Stopping containers using port 80..."
 docker ps -q --filter "publish=80" | xargs -r docker stop
 docker ps -aq --filter "publish=80" | xargs -r docker rm
 
+echo "Removing previous healthcare-app container if exists..."
+
+docker rm -f healthcare-app 2>/dev/null || true
+
 echo "Cleaning unused Docker images..."
 
 docker image prune -f
