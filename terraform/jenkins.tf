@@ -74,7 +74,7 @@ resource "aws_security_group" "jenkins_sg" {
 
 resource "aws_instance" "jenkins_server" {
 
-  ami = data.aws_ami.amazon_linux.id
+  ami = "ami-09c4c27bd1fe1d47d"
 
   instance_type = var.jenkins_instance_type
 
@@ -84,19 +84,9 @@ resource "aws_instance" "jenkins_server" {
 
   key_name = var.key_pair_name
 
-  user_data = file("${path.module}/jenkins_userdata.sh")
-
   iam_instance_profile = aws_iam_instance_profile.jenkins_profile.name
 
   associate_public_ip_address = true
-
-  #user_data_replace_on_change = true
-
-  lifecycle {
-    ignore_changes = [
-      user_data
-    ]
-  }
 
   root_block_device {
 
