@@ -2,8 +2,6 @@
 .terraform/
 *.tfstate
 *.tfstate.*
-
-# Variable files
 terraform.tfvars
 *.auto.tfvars
 
@@ -12,12 +10,29 @@ crash.log
 
 # IDE
 .vscode/
+.idea/
 
 # OS
 .DS_Store
 Thumbs.db
 
-#PEM keys
+# PEM keys
 *.pem
-*.txt
 AWS Access key.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python virtual environments
+venv/
+.venv/
+
+# Environment files
+.env
+.env.*
+
+# Node
+node_modules/
+dist/
